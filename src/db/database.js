@@ -16,4 +16,4 @@ promise
 
 const objectId = ObjectId;
 
-export { db, ObjectId };
+export default{ db, ObjectId };
