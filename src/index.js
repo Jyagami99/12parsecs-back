@@ -9,14 +9,14 @@ async function main() {
 
   const app = express();
 
-  app.use(cors);
-  app.use(json);
+  app.use(cors());
+  app.use(json());
 
   app.use(router)
 
 
 
-  const PORT = process.env.PORT || 3333;
+  const PORT = process.env.PORT || 4444;
 
   app.listen(PORT, () => {
     console.log(`O servidor subiu na porta ${PORT}`);
