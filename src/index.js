@@ -7,8 +7,8 @@ async function main() {
 
   const app = express();
 
-  app.use(cors);
-  app.use(json);
+  app.use(cors());
+  app.use(json());
 
   const PORT = process.env.PORT || 3333;
 
@@ -17,3 +17,4 @@ async function main() {
   });
 }
 main().catch(console.error);
+
