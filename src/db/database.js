@@ -15,4 +15,4 @@ promise
   })
   .catch((err) => console.error(err));
 
-export default db ;
+export  {db} ;
