@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import router from "./routes/authRoutes.js";
+import routerProduct from './routes/productsRoutes.js'
 
 
 async function main() {
@@ -12,7 +12,8 @@ async function main() {
   app.use(cors());
   app.use(json());
 
-  app.use(router)
+
+  app.use(routerProduct);
 
 
 
