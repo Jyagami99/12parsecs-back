@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import routerProduct from './routes/productsRoutes.js'
+import routerProduct from './routes/productsRoute.js'
 
 
 async function main() {
