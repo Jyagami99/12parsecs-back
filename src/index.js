@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRouter from "./routes/authRouter.js";
 import productRouter from "./routes/productRouter.js";
+import checkoutRouter from './routes/checkoutRouter.js'
 
 async function main() {
   dotenv.config();
@@ -14,6 +15,7 @@ async function main() {
 
   app.use(authRouter);
   app.use(productRouter);
+  app.use(checkoutRouter);
 
   const PORT = process.env.PORT || 3333;
 
