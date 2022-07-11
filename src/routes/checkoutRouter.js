@@ -6,5 +6,4 @@ const checkoutRouter = Router();
 
 checkoutRouter.post("/checkout", validaToken, postCheckout);
 
-
 export default checkoutRouter;
