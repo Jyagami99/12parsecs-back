@@ -1,27 +1,30 @@
 import {db} from '../db/database.js'
 
-export default async function token(request, response, next){
-    const {authorization} = request.headers;
-    const token = authorization?.replace('Bearer ', '').trim();
+export async function validaToken(req, res, next) {
+    const {authorization} = req.headers;
+    const token = authorization?.replace("Bearer", "").trim();
 
-    if(!token){
-        return response.status(401).send('Não autorizado');
+    if(!token) {
+        console.log("sem token");
+        return res.sendStatus(401);
     }
-    try{
-        const session = await db.collection('sessions').findOne({token});
+    try {
+        const session = await db.collection("sessions").findOne({token}); 
+
         if(!session){
-            return response.status(401).send('Sessão nao existe');
+         return res.status(401).send("Nenhuma session encontrada");
         }
 
-        const user = await db.collection('users').findOne({_id: session.userId});
-        if(!user){
-            return response.sendStatus(401);
+        const usuario = await db.collection("usuarios").findOne({_id: session.userId});
+
+        if(!usuario) {
+            return res.status(401).send("Nenhum usuario encontrado");
         }
-        delete user.password;
-        response.locals.user = user;
+
+        res.locals.usuario = usuario;
+        next();
+    } catch (e) {
+        console.log("Erro tentando encontrar o usuario", e);
+        return res.sendStatus(500);
     }
-    catch(erro){
-        return response.status(500).send('Token invalido');
-    }
-    next();
 }
